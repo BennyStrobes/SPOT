@@ -5,7 +5,7 @@ SPOT (SPlicing Outlier deTection) is a probabilistic framework to detect Splicin
 ## Input data
 
 SPOT identifies outliers at the level of a LeafCutter Cluster (see https://github.com/davidaknowles/leafcutter for more details). Therefor, to generate input data for SPOT you must follow the pre-processing steps described in LeafCutter:
-1. Align reads and generate exon-exon junction files. (described in step 1 here: http://davidaknowles.github.io/leafcutter/articles/Usage.html)
+1. Align reads and generate exon-exon junction files. (described in steps 0 and 1 here: http://davidaknowles.github.io/leafcutter/articles/Usage.html)
 2. Run LeafCutter "Intron clustering" (described in step 2 here: http://davidaknowles.github.io/leafcutter/articles/Usage.html). This will generate a file with the suffix "perind_numers.counts.gz". This file is the input file for SPOT. SPOT will accept this file either zipped or un-zipped. Briefly, each column in this file corresponds to an RNA-seq sample and each row corresponds to an intron, which are identified as chromosome:intron_start:intron_end:cluster_id. 
 
 An example of a previously generated SPOT input file can be found under 'example_data/exon_exon_junction_file.txt'
