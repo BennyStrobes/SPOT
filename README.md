@@ -22,6 +22,14 @@ Once you have generated the SPOT input file (with help from LeafCutter), SPOT ca
 
 python spot.py --juncfile $junction_file_name --outprefix $output_root
 
+## SPOT deliverables
+
+SPOT will generate two files:
+1. $output_root'md.txt'
+2. $output_root"emperical_pvalue.txt"
+
+Both files are of dimension C X N where C is the number of clusters and N is the number of samples. Each element of the first file is the Mahalanobis distance of a particular sample for a particular cluster. Each element of the second file is the splicing outlier pvalue for a particular sample for a particular cluster.
+
 
 ## Dependencies
 Python packages:
@@ -41,4 +49,4 @@ SPOT was generated and tested using the following versions:
 
 ## Authors
 
-* **Ben Strober** -- [BennyStrobes](https://github.com/BennyStrobes)
+* **Ben Strober** -- [BennyStrobes](https://github.com/BennyStrobes) -- bstrober3@gmail.com
