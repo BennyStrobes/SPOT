@@ -14,7 +14,7 @@ def extract_raw_cluster_jxn_data_structure(jxn_file):
 	if jxn_file.endswith('.gz'):
 		f = gzip.open(jxn_file)
 	else:
-		f = open(tissue_specific_jxn_file)
+		f = open(jxn_file)
 	for line in f:
 		line = line.rstrip()
 		data = line.split()
