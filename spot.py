@@ -1,18 +1,20 @@
-import pdb
 import numpy as np
 import sys
 import pystan
-import pickle
 import dirichlet_multinomial
+import gzip
 
 # Extract data structure and sample anmes
-def extract_raw_cluster_jxn_data_structure(tissue_specific_jxn_file):
+def extract_raw_cluster_jxn_data_structure(jxn_file):
 	# Used to skip header
 	head_count = 0
 	# Initialize cluster_jxn_data_structure
 	cluster_jxn_data_structure = {}
 	# Stream input file
-	f = open(tissue_specific_jxn_file)
+	if jxn_file.endswith('.gz'):
+		f = gzip.open(jxn_file)
+	else:
+		f = open(tissue_specific_jxn_file)
 	for line in f:
 		line = line.rstrip()
 		data = line.split()
@@ -169,7 +171,7 @@ if __name__ == "__main__":
 
 	parser = OptionParser()
 
-	parser.add_option("-j", "--juncfiles", dest="juncfiles",
+	parser.add_option("-j", "--juncfile", dest="juncfiles",
 		help="text file with all junction files to be processed")
 
 	parser.add_option("-o", "--outprefix", dest="outprefix", default = 'spot',
