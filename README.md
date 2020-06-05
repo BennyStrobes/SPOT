@@ -2,7 +2,7 @@
 
 SPOT (SPlicing Outlier deTection) is a probabilistic framework to detect Splicing Outilers from  RNA-seq data. Briefly, SPOT fits a Dirichlet-Multinomial distribution directly to counts of reads split across alternatively spliced exon-exon junctions for each gene. SPOT then identifies individuals that deviate significantly from the expectation based on this fitted distribution. Please see [ref bioRxiv preprint] for more details.
 
-## Input data
+## Input data format
 
 SPOT identifies outliers at the level of a LeafCutter Cluster (see https://github.com/davidaknowles/leafcutter for more details). Therefor, to generate input data for SPOT you must follow the pre-processing steps described in LeafCutter:
 1. Align reads and generate exon-exon junction files. (described in steps 0 and 1 here: http://davidaknowles.github.io/leafcutter/articles/Usage.html)
