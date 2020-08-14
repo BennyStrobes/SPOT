@@ -21,7 +21,7 @@ def extract_raw_cluster_jxn_data_structure(jxn_file):
 		# Header
 		if head_count == 0:
 			head_count = head_count + 1
-			samples = np.asarray(data[1:])
+			samples = np.asarray(data[0:])
 			continue
 		# Standard line
 		# Extract Jxn info from current line
