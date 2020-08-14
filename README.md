@@ -10,7 +10,7 @@ SPOT identifies outliers at the level of a LeafCutter Cluster (see https://githu
 
 An example of a previously generated SPOT input file can be found under 'example_data/exon_exon_junction_file.txt'
 
-It is important to note that in the following paper [ref bioRxiv preprint], we applied the following set of custom filters to the LeafCutter files (before running SPOT) in order to remove exon-exon junctions with low expression while retaining rare exon-exon junctions:
+It is important to note that in the following paper [https://www.biorxiv.org/content/10.1101/786053v1], we applied the following set of custom filters to the LeafCutter files (before running SPOT) in order to remove exon-exon junctions with low expression while retaining rare exon-exon junctions:
 1. Removed exon-exon junctions where no sample has >= 15 split reads
 2. Re-defined LeafCutter cluster assignments after removal of exon-exon junctions (according to the above filter) and removed exon-exon junctions that no longer shared a splice site with any other exon-exon junction.
 3. Removed all exon-exon junctions belonging to a LeafCutter cluster where more than 10% of the samples had less than 3 reads summed across all exon-exon junctions assigned to that LeafCutter cluster.
