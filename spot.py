@@ -12,7 +12,10 @@ def extract_raw_cluster_jxn_data_structure(jxn_file):
 	cluster_jxn_data_structure = {}
 	# Stream input file
 	if jxn_file.endswith('.gz'):
-		f = gzip.open(jxn_file)
+		mode = "rb"
+		if sys.version_info.major >= 3:
+			mode = "rt"
+		f = gzip.open(jxn_file, mode=mode)
 	else:
 		f = open(jxn_file)
 	for line in f:
