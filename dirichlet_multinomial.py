@@ -139,3 +139,45 @@ def run_dm_outlier_analysis(X, num_background_samples, num_simulated_reads, seed
 
 
 	return mahalanobis_distances, pvalues, alpha
+
+def run_dm_outlier_analysis_with_reference_data(X, X_ref, num_background_samples, num_simulated_reads, seed, DM_GLM):
+	#########################################################
+	# Fit Dirichlet multinomial based on samples
+	#########################################################
+	# Fit dirichlet multinomial to X (return dm parameter alpha)
+	alpha = dirichlet_multinomial_fit(X_ref, seed, DM_GLM)
+
+	#########################################################
+	# Compute mahalanobis distance (MD) for all observed samples
+	#########################################################
+	# Initialize array to keep track of mahalanobis distances from each samples
+	mahalanobis_distances = []
+	# Compute mahalanobis distance for each sample. 
+	num_samples, num_jxns = X.shape
+	# Loop through samples
+	for sample_num in range(num_samples):
+		mahalanobis_distances.append(compute_mahalanobis_distance(X[sample_num,:], alpha))
+	# Convert to numpy array
+	mahalanobis_distances = np.asarray(mahalanobis_distances)
+
+	#########################################################
+	# Estimate emperical distribution
+	#########################################################
+	#Take num_samples for the fitted DM. For each draw, compute mahalanobis distance
+	sample_mahalanobis_distances = generate_background_mahalanobis_distances(alpha, num_background_samples, num_simulated_reads)
+
+	#########################################################
+	# Compute pvalues for observed samples based on emperical distribution
+	#########################################################
+	# Initialize output vector
+	pvalues = []
+	# Loop through observed samples' distances
+	for distance in mahalanobis_distances:
+		# Compute pvalue for this sample
+		pvalue = len(np.where(distance <= sample_mahalanobis_distances)[0])/float(len(sample_mahalanobis_distances))
+		pvalues.append(pvalue)
+	# Convert to numpy array
+	pvalues = np.asarray(pvalues)
+
+
+	return mahalanobis_distances, pvalues, alpha
